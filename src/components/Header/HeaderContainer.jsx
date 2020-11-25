@@ -1,7 +1,7 @@
 import React from "react";
-import {setActiveLink} from "../../redux/reducers/header-reducer";
-import {connect} from 'react-redux';
 import Header from "./Header";
+import {connect} from 'react-redux';
+import {setActiveLink} from "../../redux/reducers/header-reducer";
 
 let mapStateToProps = (state) => {
     return {

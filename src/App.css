@@ -1,7 +1,16 @@
-.container {
-  margin: 0 auto;
-  width: 1180px;
+* {
   font-family: 'Open Sans', sans-serif;
-  outline: 1px solid green;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.wrapper__inner {
+  flex: 1 0 auto;
 }
 /*# sourceMappingURL=App.css.map */

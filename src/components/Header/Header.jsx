@@ -1,13 +1,15 @@
 import React from "react";
+import './style/style.css';
+import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTicketAlt} from "@fortawesome/free-solid-svg-icons";
 import {faVk,faInstagramSquare} from '@fortawesome/free-brands-svg-icons'
-import './style/style.css'
 
-const Header = ({setActiveLink}) => {
+const Header = ({activeLink, setActiveLink}) => {
 
     return (
         <header className='header'>
+            <div className="container">
             <div className='header-flex-wrapper'>
                 <div className='header-title'>
                     <h1 className='header-title_main'>Родина</h1>
@@ -17,27 +19,29 @@ const Header = ({setActiveLink}) => {
                     <div className="header-info-contacts">
                         <div className='address'>г. Москва, Семеновская площадь, дом 5</div>
                         <div className="links">
-                            <a href="#" className="header-info-contacts__link"><FontAwesomeIcon icon={faTicketAlt}/>
+                            <NavLink to={'/tickets'} className="header-info-contacts__link"><FontAwesomeIcon icon={faTicketAlt}/>
                                 <span>
                             Купить билет
                                 </span>
-                            </a>
+                            </NavLink>
                             <a href="#" className="header-info-contacts__link"><FontAwesomeIcon icon={faInstagramSquare}/></a>
                             <a href="#" className="header-info-contacts__link"><FontAwesomeIcon icon={faVk}/></a>
                         </div>
                     </div>
+                </div>
+            </div>
                 <nav className="header-info-nav">
+                    <a className='header-info-nav__burger' href="#"></a>
                     <ul>
-                        <li className='header-info-nav__item'><a href="#">Сегодня в кино</a></li>
-                        <li className='header-info-nav__item'><a href="#">Скоро в кино</a></li>
-                        <li className='header-info-nav__item'><a href="#">Расписание</a></li>
-                        <li className='header-info-nav__item'><a href="#">Новости</a></li>
-                        <li className='header-info-nav__item'><a href="#">Акции</a></li>
-                        <li className='header-info-nav__item'><a href="#">Контакты</a></li>
+                        <li className={(activeLink === 'today') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('today')}} to="/today">Сегодня в кино</NavLink></li>
+                        <li className={(activeLink === 'soon') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('soon')}} to="/soon">Скоро в кино</NavLink></li>
+                        <li className={(activeLink === 'schedule') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('schedule')}} to="/schedule">Расписание</NavLink></li>
+                        <li className={(activeLink === 'news') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('news')}} to="/news">Новости</NavLink></li>
+                        <li className={(activeLink === 'events') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('events')}} to="/events">Акции</NavLink></li>
+                        <li className={(activeLink === 'contacts') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('contacts')}} to="/contacts">Контакты</NavLink></li>
                     </ul>
                 </nav>
                 </div>
-            </div>
         </header>
     )
 };
