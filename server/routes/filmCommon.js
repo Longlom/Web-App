@@ -50,6 +50,16 @@ router
             .save()
             .catch(err => console.log(err));
         res.status(201).json({message: 'All is gucci'});
+    })
+    .delete(async (req, res) => {
+        let data =  await Film.find(JSON.parse(req.query.selector)).exec();
+        if (data.length) {
+            let result = await Film.deleteOne(JSON.parse(req.query.selector));
+            console.log(result)
+            res.status(200).json({message: 'ok'});
+        } else {
+            res.status(404).json({message: 'there is no such film'});
+        }
     });
 
 module.exports = router;

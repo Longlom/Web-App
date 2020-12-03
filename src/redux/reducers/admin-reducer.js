@@ -15,6 +15,6 @@ const adminReducer = (state = inititalState, action) => {
     }
 };
 
-export const adminLogOut = () => ({ type: ADMIN_LOG_OUT})
+export const adminLogOut = () => ({ type: ADMIN_LOG_OUT});
 
 export default adminReducer;

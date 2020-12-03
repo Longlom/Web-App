@@ -26,7 +26,7 @@ function App() {
                   )
               }
           }/>
-          <Route exact path='/admin' render={
+          <Route path='/admin' render={
               () => {
                   return (
                       <AdminPanelContainer/>

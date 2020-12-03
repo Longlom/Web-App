@@ -83,7 +83,6 @@ const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminReques
 
     return (
         <div className="container">
-            <button onClick={openModal}>Open Modal</button>
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}

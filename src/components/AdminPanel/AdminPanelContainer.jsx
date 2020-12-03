@@ -1,7 +1,7 @@
 import React from "react";
 import AdminPanel from "./AdminPanel";
 import {connect} from 'react-redux'
-import {adminLogOut} from "../../redux/reducers/admin-reducer";
+import {adminLogOut} from "../../redux/reducers/body-reducer";
 
 let mapStateToProps = (state) => {
     return {

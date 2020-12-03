@@ -5,6 +5,8 @@ const SEACRH_FILMS = 'SEACRH_FILMS';
 const INPUT_ADMIN_PASSWORD = 'INPUT_ADMIN_PASSWORD';
 const INPUT_ADMIN_LOGIN = 'INPUT_ADMIN_LOGIN';
 const TOGGLE_IS_ADMIN = 'TOGGLE_IS_ADMIN';
+const ADMIN_LOG_OUT = 'ADMIN_LOG_OUT';
+
 
 
 let inititalState = {
@@ -43,6 +45,9 @@ const bodyReducer = (state = inititalState, action) => {
         case TOGGLE_IS_ADMIN: {
             return { ...state, isAdmin: action.state };
         }
+        case ADMIN_LOG_OUT: {
+            return { ...state, isAdmin: false}
+        }
         default:
             return state;
     }
@@ -56,6 +61,7 @@ export const searchFilms = (str) => ({type: SEACRH_FILMS, str});
 export const inputAdminPassword = (text) => ({type: INPUT_ADMIN_PASSWORD, text});
 export const inputAdminLogin = (text) => ({type: INPUT_ADMIN_LOGIN, text});
 export const setIsAdmin = (state) => ({type: TOGGLE_IS_ADMIN, state});
+export const adminLogOut = () => ({ type: ADMIN_LOG_OUT});
 
 export default bodyReducer;
 
