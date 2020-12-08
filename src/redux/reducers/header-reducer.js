@@ -1,7 +1,7 @@
 const SET_ACTIVE_LINK = 'SET_ACTIVE_LINK';
 
 let inititalState = {
-    activeLink: null,
+    activeLink: '/',
 };
 
 const headerReducer = (state = inititalState, action) => {

@@ -92,7 +92,7 @@
       text-align: center;
 
       display: flex;
-      //justify-content: space-between;
+      justify-content: space-between;
 
       margin-top: 10px;
       border: 1px solid #9c2a3e;
@@ -113,14 +113,26 @@
 
   &-modal {
     display: flex;
-    justify-content: space-around;
+    //justify-content: space-around;
 
     margin-top: 30px;
 
     & > div {
       width: 170px;
+      margin-left: 20px;
       text-align: center;
       word-break: normal;
+
+      & > img {
+        margin-top: 20px;
+        width: 150px;
+      }
+
+      & > textarea {
+        margin-left: 70px;
+        height: 100px;
+        width: 300px;
+      }
     }
 
     & > div:last-of-type {

@@ -164,6 +164,30 @@
 
   }
 
+  &-modal{
+
+    &-description {
+
+      text-align: center;
+
+      &__text {
+        margin-top: 30px;
+
+
+      }
+
+      &-item {
+        display: flex;
+        justify-content: space-around;
+
+        & > div {
+          margin-top: 15px;
+        }
+
+      }
+    }
+  }
+
 }
 
 .admin-modal {
@@ -218,6 +242,33 @@
         height: 45px;
         width: 80%;
       }
+    }
+  }
+}
+
+.edit-container {
+  display: flex;
+  justify-content: space-between;
+
+  & > input {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  & > button {
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
+
+    background: transparent;
+    outline: none;
+    border: 1px solid #9c2a3e;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    &:hover {
+      background: lighten(#9c2a3e, 30%);
     }
   }
 }

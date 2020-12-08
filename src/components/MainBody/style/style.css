@@ -115,6 +115,19 @@ p.body-film-description__genre {
 .body-film:hover > .body-film-buttons {
   transform: translateX(-100%);
 }
+.body-modal-description {
+  text-align: center;
+}
+.body-modal-description__text {
+  margin-top: 30px;
+}
+.body-modal-description-item {
+  display: flex;
+  justify-content: space-around;
+}
+.body-modal-description-item > div {
+  margin-top: 15px;
+}
 .admin-modal__button {
   position: absolute;
   top: 3%;
@@ -152,5 +165,26 @@ p.body-film-description__genre {
   margin: 10% auto 0;
   height: 45px;
   width: 80%;
+}
+.edit-container {
+  display: flex;
+  justify-content: space-between;
+}
+.edit-container > input {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.edit-container > button {
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  background: transparent;
+  outline: none;
+  border: 1px solid #9c2a3e;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.edit-container > button:hover {
+  background: #dd8292;
 }
 /*# sourceMappingURL=style.css.map */

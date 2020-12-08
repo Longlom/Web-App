@@ -33,11 +33,7 @@ const Header = ({activeLink, setActiveLink}) => {
                 <nav className="header-info-nav">
                     <a className='header-info-nav__burger' href="#"></a>
                     <ul>
-                        <li className={(activeLink === 'today') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('today')}} to="/today">Сегодня в кино</NavLink></li>
-                        <li className={(activeLink === 'soon') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('soon')}} to="/soon">Скоро в кино</NavLink></li>
-                        <li className={(activeLink === 'schedule') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('schedule')}} to="/schedule">Расписание</NavLink></li>
-                        <li className={(activeLink === 'news') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('news')}} to="/news">Новости</NavLink></li>
-                        <li className={(activeLink === 'events') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('events')}} to="/events">Акции</NavLink></li>
+                        <li className={(activeLink === '/') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('/')}} to="/">Сегодня в кино</NavLink></li>
                         <li className={(activeLink === 'contacts') ? 'header-info-nav__item link_active' : 'header-info-nav__item'}><NavLink onClick={() => {setActiveLink('contacts')}} to="/contacts">Контакты</NavLink></li>
                     </ul>
                 </nav>

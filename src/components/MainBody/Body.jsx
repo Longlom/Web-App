@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
 import './style/style.css'
+import * as axios from "axios";
 
 Modal.setAppElement('#root');
 
@@ -24,7 +25,26 @@ const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminReques
         }
     };
 
+    let descriptionStyles ={
+        content : {
+            height: '60%',
+            width: '600px',
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: '#f1e4ce',
+        }
+    };
+
+    const [descriptionData, setDescriptionData] = useState({});
+    const [filmData, setFilmData] = useState({});
+
     const [modalIsOpen,setIsOpen] = useState(false);
+    const [descriptionModalIsOpen,setDescriptionIsOpen] = useState(false);
+    const [filmModalIsOpen,setFilmIsOpen] = useState(false);
     const [adminModalIsOpen, setAdminModalIsOpen] = useState(false);
     function openModal() {
         setIsOpen(true);
@@ -37,6 +57,45 @@ const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminReques
 
     function closeModal(){
         setIsOpen(false);
+    }
+
+    function openDescriptionModal(id){
+        setDescriptionIsOpen(true);
+        let selector = { _id: id};
+        console.log(selector);
+        axios.get(`http://127.0.0.1:5000/filmCommon`, {params: {selector}})
+            .then((res) => {
+                console.log(res.data);
+                setDescriptionData(res.data[0]);
+            })
+    }
+
+    function afterDescriptionModal() {
+
+    }
+
+    function closeDescriptionModal() {
+        setDescriptionIsOpen(false);
+    }
+
+
+    function openFilmModal(id){
+        setFilmIsOpen(true);
+        let selector = { _id: id};
+        console.log(selector);
+        axios.get(`http://127.0.0.1:5000/filmInfo`, {params: {selector}})
+            .then((res) => {
+                console.log(res.data);
+                setFilmData(res.data[0]);
+            })
+    }
+
+    function afterFilmModal() {
+
+    }
+
+    function closeFilmModal() {
+        setFilmIsOpen(false);
     }
 
     let filmRef = React.createRef();
@@ -124,7 +183,7 @@ const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminReques
                 {films.map((film) => {
                     return (
                         <>
-                            <div key={film.id} className='body-film'>
+                            <div key={film._id} className='body-film'>
                                 <img src={`${process.env.PUBLIC_URL}/assets/images/${film.path}`}
                                      className='body-film__img' alt=""/>
                                 <div className='body-film-description'>
@@ -133,10 +192,48 @@ const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminReques
                                     <p className='body-film-description__date'>{film.date}</p>
                                 </div>
                                 <div className='body-film-buttons'>
-                                    <button>Подробнее</button>
-                                    <button>Расписание и билеты</button>
+                                    <button onClick={(e) => {
+                                        e.preventDefault();
+                                        openDescriptionModal(film._id);
+                                    }}>Подробнее</button>
+                                    <button onClick={(e) => {
+                                        e.preventDefault();
+                                        openFilmModal(film._id);
+                                    }}>Расписание и билеты</button>
                                 </div>
                             </div>
+                            <Modal
+                                isOpen={descriptionModalIsOpen}
+                                onAfterOpen={afterDescriptionModal}
+                                onRequestClose={closeDescriptionModal}
+                                style={descriptionStyles}
+                                contentLabel="">
+
+                                <button onClick={closeDescriptionModal} className='admin-modal__button' ><FontAwesomeIcon icon={faTimes}/></button>
+                                <div className='body-modal-description'>
+                                    <img src={`${process.env.PUBLIC_URL}/assets/images/${descriptionData.path}`} alt="" className='body-modal-description__img'/>
+                                    <p className='body-modal-description__text'>{descriptionData.text}</p>
+                                </div>
+                            </Modal>
+                            <Modal
+                                isOpen={filmModalIsOpen}
+                                onAfterOpen={afterFilmModal}
+                                onRequestClose={closeFilmModal}
+                                style={descriptionStyles}
+                                contentLabel="">
+
+                                <button onClick={closeFilmModal} className='admin-modal__button' ><FontAwesomeIcon icon={faTimes}/></button>
+                                <div className='body-modal-description'>
+                                    <p className='body-modal-description__text'>{filmData.description}</p>
+                                    { filmData.sessions ? filmData.sessions.map((item) => (<div className='body-modal-description-item' key={item._id}>
+                                        <div className='body-modal-description-item__time'>Время - {item.time}</div>
+                                        <div className='body-modal-description-item__price'>Цена - {item.price}</div>
+                                        <div className='body-modal-description-item__button'><button onClick={(e) => {
+                                            axios.put(`http://127.0.0.1:5000/filmInfo`,  {_id: filmData._id, time: item.time});
+                                        }}>Купить</button></div>
+                                    </div>)) : null}
+                                </div>
+                            </Modal>
                         </>
                     )
                 })}

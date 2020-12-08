@@ -1,0 +1,10 @@
+.contacts-info {
+  margin-top: 15px;
+}
+.contacts-info:last-child {
+  margin-bottom: 30px;
+}
+.contacts-info a {
+  color: #e11512;
+}
+/*# sourceMappingURL=style.css.map */
