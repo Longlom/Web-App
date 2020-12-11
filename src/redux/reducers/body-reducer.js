@@ -15,7 +15,7 @@ let inititalState = {
     films: [],
     isFetching: false,
     hiddenFilms: [],
-    isAdmin: false,
+    isAdmin: true,
     adminPassword: '',
     adminLogin: '',
     buyTicket: '',

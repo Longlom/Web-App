@@ -19,6 +19,7 @@ const EditPanel = ({id, closeEditPanel, film, info}) => {
     useEffect(() => {
         axios.get(`http://127.0.0.1:5000/filmInfo`, {params: {selector: {_id: id}}})
             .then((res) => {
+                console.log(res.data, 'data');
                 setDataInfo({...res.data[0], sessions: res.data[0].sessions.map((item) => (`${item.time} ${item.price} ${item.amount}\n`)).join('')});
             })
     }, []);
