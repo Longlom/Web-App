@@ -1,0 +1,96 @@
+.ticket {
+
+
+  &-seats {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 20%);
+
+    &__colors {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      position: absolute;
+      top: 0px;
+      right: -150px;
+
+    div {
+      margin-top: 15px;
+
+    }
+    }
+
+    &__row {
+      position: absolute;
+      left: -70px;
+
+      font-size: 18px;
+    }
+
+    &__seat {
+      position: relative;
+      z-index: 10;
+      display: block;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #9c2a3e;
+      border-radius: 3px;
+      background-color: rgba(#ababab, .2);
+
+      input {
+        visibility: hidden;
+
+      }
+    }
+  }
+
+  &-price {
+    margin: 20px 0 ;
+    font-size: 22px;
+
+    &__button {
+      //margin-left: 50px;
+    }
+  }
+}
+
+
+.chosen {
+  background-color: #9c2a3e;
+}
+
+
+.bought {
+  background-color: #e11512;
+}
+
+
+.color {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid #9c2a3e;
+  border-radius: 3px;
+}
+
+.red {
+  background-color: #e11512;
+}
+
+.purple {
+  background-color: #9c2a3e;
+}
+
+.gray {
+  background-color: rgba(#ababab, .2)
+}

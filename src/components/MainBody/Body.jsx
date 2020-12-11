@@ -7,10 +7,11 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
 import './style/style.css'
 import * as axios from "axios";
+import {NavLink} from "react-router-dom";
 
 Modal.setAppElement('#root');
 
-const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminRequest}) => {
+const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminRequest, setTicket}) => {
     let customStyles ={
         content : {
             height: '50%',
@@ -225,13 +226,14 @@ const Body = ({films, search, updateAdminLogin, updateAdminPassword, adminReques
                                 <button onClick={closeFilmModal} className='admin-modal__button' ><FontAwesomeIcon icon={faTimes}/></button>
                                 <div className='body-modal-description'>
                                     <p className='body-modal-description__text'>{filmData.description}</p>
-                                    { filmData.sessions ? filmData.sessions.map((item) => (<div className='body-modal-description-item' key={item._id}>
+                                    { filmData.sessions ? filmData.sessions.map((item) => (
+                                        <div className='body-modal-description-item' key={item._id}>
                                         <div className='body-modal-description-item__time'>Время - {item.time}</div>
                                         <div className='body-modal-description-item__price'>Цена - {item.price}</div>
-                                        <div className='body-modal-description-item__button'><button onClick={(e) => {
-                                            axios.put(`http://127.0.0.1:5000/filmInfo`,  {_id: filmData._id, time: item.time});
-                                        }}>Купить</button></div>
-                                    </div>)) : null}
+                                        <div className='body-modal-description-item__hall'>Зал - {item.hall}</div>
+                                        <div className='body-modal-description-item__button'> <NavLink to='/tickets' onClick={() => {setTicket({name: filmData.name, time: item.time, hall: item.hall, price: item.price})}} >Купить</NavLink></div>
+                                    </div>
+                                    )) : null}
                                 </div>
                             </Modal>
                         </>

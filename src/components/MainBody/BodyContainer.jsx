@@ -1,7 +1,7 @@
 import React from "react";
 import BodyClass from "./BodyClass";
 import {connect} from 'react-redux'
-import {setFilms, setIsFetching, searchFilms, inputAdminLogin, inputAdminPassword, setIsAdmin} from "../../redux/reducers/body-reducer";
+import {setFilms, setIsFetching, searchFilms, inputAdminLogin, inputAdminPassword, setIsAdmin, setTicket} from "../../redux/reducers/body-reducer";
 
 
 let mapStateToProps = (state) => {
@@ -14,5 +14,5 @@ let mapStateToProps = (state) => {
     }
 };
 
-const BodyContainer = connect(mapStateToProps, {setFilms, setIsFetching, searchFilms, setIsAdmin,  inputAdminLogin, inputAdminPassword})(BodyClass);
+const BodyContainer = connect(mapStateToProps, {setFilms, setIsFetching, searchFilms, setIsAdmin,  inputAdminLogin, inputAdminPassword, setTicket})(BodyClass);
 export default BodyContainer;

@@ -7,15 +7,18 @@ const INPUT_ADMIN_LOGIN = 'INPUT_ADMIN_LOGIN';
 const TOGGLE_IS_ADMIN = 'TOGGLE_IS_ADMIN';
 const ADMIN_LOG_OUT = 'ADMIN_LOG_OUT';
 
+const SET_TICKET = 'SET_TICKET';
+
 
 
 let inititalState = {
     films: [],
     isFetching: false,
     hiddenFilms: [],
-    isAdmin: true,
+    isAdmin: false,
     adminPassword: '',
     adminLogin: '',
+    buyTicket: '',
 };
 
 
@@ -46,7 +49,10 @@ const bodyReducer = (state = inititalState, action) => {
             return { ...state, isAdmin: action.state };
         }
         case ADMIN_LOG_OUT: {
-            return { ...state, isAdmin: false}
+            return { ...state, isAdmin: false};
+        }
+        case SET_TICKET: {
+            return {...state, buyTicket: action.info};
         }
         default:
             return state;
@@ -62,6 +68,8 @@ export const inputAdminPassword = (text) => ({type: INPUT_ADMIN_PASSWORD, text})
 export const inputAdminLogin = (text) => ({type: INPUT_ADMIN_LOGIN, text});
 export const setIsAdmin = (state) => ({type: TOGGLE_IS_ADMIN, state});
 export const adminLogOut = () => ({ type: ADMIN_LOG_OUT});
+
+export const setTicket = (info) => ({type: SET_TICKET, info});
 
 export default bodyReducer;
 

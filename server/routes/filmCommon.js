@@ -27,7 +27,6 @@ router
         Film.find((req.query.selector) ? JSON.parse(req.query.selector) : {})
             .exec()
             .then(ex => {
-                console.log(ex);
                 res.status(200).json(ex);
             })
             .catch(err => {
@@ -35,7 +34,6 @@ router
             });
     })
     .post(upload.single('img'), (req, res) => {
-        console.log(req.body);
         let fileType = req.file.path.split('.').reverse()[0];
         const name = transliteration.slugify(req.body.name, {separator: '_'});
         fs.renameSync(`${req.file.path}`, `${req.file.destination}/${name}.${fileType}`);
@@ -55,7 +53,6 @@ router
     })
     .put(upload.single('img'), async (req, res) => {
         try {
-            console.log(req.file, req.body,'file');
             let doc = await Film.findOne({_id: req.body._id});
             for (let key in req.body) {
                 if (key === '_id') continue;
@@ -68,7 +65,6 @@ router
         }
     })
     .delete(async (req, res) => {
-        console.log('DELETE INGO');
         let data =  await Film.find(JSON.parse(req.query.selector)).exec();
         if (data.length) {
             let result = await Film.deleteOne(JSON.parse(req.query.selector));
@@ -81,7 +77,7 @@ router
     .route('/update')
     .post(async (req,res) => {
         try {
-            console.log(req.body);
+
             res.status(201).json({message:'filmInfo: All is gucci'});
         }catch (e) {
             console.error(e);

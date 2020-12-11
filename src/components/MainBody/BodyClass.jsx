@@ -47,7 +47,10 @@ class BodyClass extends React.Component{
                       <Body films={this.props.films} search={this.props.searchFilms}
                             updateAdminLogin={this.props.inputAdminLogin}
                             updateAdminPassword={this.props.inputAdminPassword}
-                            adminRequest={this.adminEnter.bind(this)}/>}
+                            adminRequest={this.adminEnter.bind(this)}
+                            setTicket={this.props.setTicket}
+                      />
+                  }
               </div>
             </>
         )

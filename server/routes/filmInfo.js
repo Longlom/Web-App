@@ -11,11 +11,9 @@ const Info = require('../models/Info');
 router
     .route('/')
     .get(async (req, res) => {
-        console.log(req.query.selector);
         Info.find((req.query.selector) ? JSON.parse(req.query.selector) : {})
             .exec()
             .then(ex => {
-                console.log(ex);
                 res.status(200).json(ex);
             })
             .catch(err => {
@@ -25,7 +23,6 @@ router
     .post(async (req,res) => {
         try {
             const selector = {name: req.body.name};
-            console.log(req.body, 'BODY');
             const response = await axios.get(`http://127.0.0.1:5000/filmCommon`, {params: {selector}});
             let sessions = req.body.sessions.split('\n');
             sessions = sessions.map((item) => {
@@ -57,7 +54,6 @@ router
     })
     .put(async (req,res) => {
         try {
-            console.log(req.body);
             const doc = await Info.findOne({_id: req.body._id});
             for (let i = 0; i < doc.sessions.length; i++) {
                 if (doc.sessions[i].time === req.body.time) {
@@ -65,7 +61,6 @@ router
                     break;
                 }
             }
-            console.log(doc);
             await doc.save();
         }catch (e) {
             console.error(e);
@@ -85,7 +80,6 @@ router
     .route('/change')
     .put(async (req,res) => {
         try {
-            console.log(req.body, 'PUT CHANGE');
             const doc = await Info.findOne({_id: req.body._id});
             doc.name = req.body.name;
             doc.description = req.body.description;

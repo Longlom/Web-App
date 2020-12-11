@@ -9,6 +9,7 @@ import BodyContainer from "./components/MainBody/BodyContainer";
 import Footer from "./components/Footer/Footer";
 import AdminPanelContainer from "./components/AdminPanel/AdminPanelContainer";
 import Contacts from "./components/Contacts/Contacts";
+import TicketsContainer from "./components/Tickets/TicketsContainer";
 
 function App() {
 
@@ -21,6 +22,19 @@ function App() {
                           <div className="wrapper__inner">
                               <HeaderContainer/>
                               <BodyContainer/>
+                          </div>
+                          <Footer/>
+                      </div>
+                  )
+              }
+          }/>
+          <Route exact path='/tickets' render={
+              () => {
+                  return (
+                      <div className="wrapper">
+                          <div className="wrapper__inner">
+                              <HeaderContainer/>
+                              <TicketsContainer />
                           </div>
                           <Footer/>
                       </div>
