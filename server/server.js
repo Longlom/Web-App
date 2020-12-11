@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const filmCommon = require('./routes/filmCommon');
 const filmInfo = require('./routes/filmInfo');
 const hallInfo = require('./routes/hallInfo');
+const hallAndFilm = require('./routes/hallAndFilm');
 const admin = require('./routes/admin')
 
 
@@ -43,6 +44,7 @@ async function start() {
         app.use('/filmCommon', filmCommon);
         app.use('/filmInfo', filmInfo);
         app.use('/hallInfo', hallInfo);
+        app.use('/hallAndFilm', hallAndFilm);
         app.use('/admin', admin);
 
 

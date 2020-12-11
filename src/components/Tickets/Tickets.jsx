@@ -10,9 +10,15 @@ const Tickets = ({filmInfo}) => {
 
     useEffect(() => {
         ( async () => {
-            const hallInfo = await axios.get('http://127.0.0.1:5000/hallInfo', { params: { name: filmInfo.hall}});
-            setData(hallInfo.data);
-            console.log(hallInfo);
+            const hallInfo = await axios.get('http://127.0.0.1:5000/hallAndFilm', { params:{ hall: filmInfo.hall, name: filmInfo.name}});
+            const data = {hall: hallInfo.data.hall};
+            hallInfo.data.sessions.forEach((item) => {
+                if (item.time === filmInfo.time) {
+                    data.seats = item.seats;
+                }
+            });
+
+            setData(data);
         })();
     }, []);
 
@@ -32,8 +38,7 @@ const Tickets = ({filmInfo}) => {
         for (let i = 0; i < inputs.length; i++) {
             arr.push(inputs[i].checked);
         }
-
-        event.preventDefault();
+        axios.put('http://127.0.0.1:5000/hallAndFilm', {seats: arr, hall: data.hall, time: filmInfo.time});
 
     };
 
@@ -41,12 +46,12 @@ const Tickets = ({filmInfo}) => {
       <>
           <div className="container">
               <div className="ticket">
-                  <div className="ticket-hall"><h2>Зал - {data.name || null}</h2></div>
+                  <div className="ticket-hall"><h2>Зал - {data.hall || null}</h2></div>
                   <div className="ticket-film"><h3>Фильм - {filmInfo.name}</h3></div>
                   <div className="ticket-seats">
                       <div className='ticket-seats__colors'><div> <span className='color red'></span> - купленные, </div><div> <span className='color purple'></span> - выбранные,</div><div> <span className='color gray'></span> - свободные </div> </div>
                       {data.seats ? data.seats.map((item, index) => (
-                        <> { !item ?  <label  className='ticket-seats__seat'>{ (index%5===0) ? <div className='ticket-seats__row'>Ряд {index/5 + 1}</div>: null}<input type="checkbox" onChange={handleClick}/></label> : <label  className='ticket-seats__seat bought'>{ (index%5===0) ? <div className='ticket-seats__row'>Ряд {index/5 + 1}</div>: null}<input type="checkbox" disabled={true}/></label> }</>)) : null}
+                        <> { !item ?  <label  className='ticket-seats__seat'>{ (index%5===0) ? <div className='ticket-seats__row'>Ряд {index/5 + 1}</div>: null}<input type="checkbox" onChange={handleClick}/></label> : <label  className='ticket-seats__seat bought'>{ (index%5===0) ? <div className='ticket-seats__row'>Ряд {index/5 + 1}</div>: null}<input type="checkbox" checked={true} disabled={true}/></label> }</>)) : null}
                   </div>
                   <div className="ticket-price"><pre>Сумма - {price} руб </pre><NavLink onClick={handleBuyClick} className='ticket-price__button' to='/'>Купить</NavLink> </div>
               </div>
