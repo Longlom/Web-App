@@ -232,6 +232,29 @@ const AdminPanel = (props) => {
                             </>
                         );
                     }}/>
+                    <Route path='/admin/hallCollection' render={ () => {
+                        return (
+                            <>
+                                {data[keys[2]] ? data[keys[2]].map((item, index) => (
+                                    <>
+                                        <div className="admin-hall-item" key={item._id}>
+                                            <div className="hall-hall">Зал - {item.hall}</div>
+                                            <div className="hall-film">Фильм - {item.film}</div>
+                                        </div>
+                                        <div className="admin-hall">{item.sessions.map((itemInner,index) => (
+                                            <>
+                                                <div className='admin-hall-innerItem'>
+                                            <div>Куплено {itemInner.bought}</div>
+                                            <div>Сеанс {itemInner.time}</div>
+                                            <div>Цена {itemInner.price}</div>
+                                                </div>
+                                            </>
+                                        ))}</div>
+                                        </>
+                                )) : null}
+                            </>
+                        );
+                    }}/>
                 </div>
             </div>
         </div>

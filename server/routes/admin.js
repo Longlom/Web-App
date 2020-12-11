@@ -8,6 +8,7 @@ let router = express.Router();
 const Admin = require('../models/Admin');
 const Film = require('../models/Film');
 const Info = require('../models/Info');
+const HallAndFilm = require('../models/HallAndFilm');
 
 router
     .route('/')
@@ -15,9 +16,11 @@ router
         try {
             const infoCollection = await Info.find({});
             const filmCollection = await Film.find({});
+            const hallCollection = await HallAndFilm.find({});
             res.status(200).json({
                 filmCollection,
-                infoCollection
+                infoCollection,
+                hallCollection,
             });
         } catch (e) {
             res.status(500).json({error: e});

@@ -6,6 +6,16 @@
   box-sizing: border-box;
   padding: 30px 0 0;
 }
+.admin-hall-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.admin-hall-innerItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 .admin-close {
   position: absolute;
   top: 5px;
